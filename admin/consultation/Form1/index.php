@@ -1,70 +1,77 @@
+
  <?php require_once('inc/topBarNav.php') ?>
      <?php require_once('inc/navigation.php') ?>
-              
-<h1 >Consultation Form</h1>
-<div class="card">
-  <div class="card-body">
-<div class="row">
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Name" aria-label="First name">
-  </div>
-  <div class="col">
-    <input type="datetime" class="form-control" placeholder="Birthday" aria-label="Last name">
-  </div>
-</div>
-<br>  
-<div class="row">
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Gender" aria-label="First name">
-  </div>
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Civil Status" aria-label="Last name">
-  </div>
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Religion" aria-label="Last name">
-  </div>
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Birth Order" aria-label="First name">
-  </div>
-</div>
-<br>
-<div class="row">
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Address" aria-label="Last name">
-  </div>
-</div>
-  <br><br><br>
-<div class="row">
-  <div class="col">
-    <input type="text" class="form-control" placeholder="House No./Lot/Block/Building Number" aria-label="First name">
-  </div>
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Barangay" aria-label="Last name">
-  </div>
-</div>
-<br>
-<div class="row">
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Town/City" aria-label="First name">
-  </div>
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Province" aria-label="Last name">
-  </div>
-</div>
-<br>
-<div class="row">
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Mobile Number" aria-label="First name">
-  </div>
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Email Address" aria-label="Last name">
-  </div>
-</div>
 
-</div> <!-- Form End -->
-<button type="button" style="position: relative;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Upload</button>
-</div>
-</div>
+<div class="card">
+  <div class="card-body">              
+
+    <form action="../admin/consultation/Form1/formInsert.php" method="GET">
+    <!-- <form action="#" method="GET"> -->
+      <h1 >Consultation Form</h1>
+
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" name="cname" placeholder="Name" aria-label="Full Name">
+        </div>
+        <div class="col">
+          <input type="datetime" class="form-control" name="cbday" placeholder="Birthday" aria-label="Birthday">
+        </div>
+      </div>
+<br>  
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" name="cgender" placeholder="Gender" aria-label="Gender">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" name="ccv" placeholder="Civil Status" aria-label="Civil Status">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" name="creligion" placeholder="Religion" aria-label="Religion">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control"  name="cbo" placeholder="Birth Order" aria-label="Birth Order">
+        </div>
+      </div>
+<br>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" name="caddress" placeholder="Address" aria-label="Address">
+        </div>
+      </div>
+  <br><br><br>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" name="chouse" placeholder="House No./Lot/Block/Building Number" aria-label="">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" name="cbarangay"placeholder="Barangay" aria-label="">
+        </div>
+      </div>
+<br>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" name="ctowncity" placeholder="Town/City" aria-label="">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" name="province" placeholder="Province" aria-label="">
+        </div>
+      </div>
+<br>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" name="mobilenumber" placeholder="Mobile Number" aria-label="">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" name="cemail" placeholder="Email Address" aria-label="">
+        </div>
+      </div>
+
+      <input type="submit" name="Upload" id="Upload"  value="Upload" style="position: relative;" class="btn btn-primary" >
+    </form>
+    </div> <!-- Form End -->
+    </div>
+<input type="button"  value="Upload" style="position: relative;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -92,10 +99,9 @@
             while($row = $qry->fetch_assoc()):
           ?>
             <tr>
-                         <td class="text-center"><input type="checkbox" name=""></td>
+              <td class="text-center"><input type="checkbox" name=""></td>
               <td><?php echo ucwords($row['email']) ?></td>
               <!-- <td ><p class="m-0 truncate-1"><?php echo $row['username'] ?></p></td> -->
-              
             </tr>
           <?php endwhile; ?>
         </tbody>

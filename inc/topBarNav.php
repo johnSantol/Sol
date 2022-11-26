@@ -1,3 +1,14 @@
+<?php 
+require_once('config.php');
+include('connect/connection.php');
+$ID = $_SESSION["user_id"];
+ $qry = $connect->query("SELECT `Form1Status` FROM `login` where user_id= '$ID'");
+            while($row = $qry->fetch_assoc()){
+              $getForm1 = (string)$row['Form1Status'];
+              // echo $row['Form1Status'];
+              // echo $getForm1;
+            }
+ ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5 ">
                 <button class="navbar-toggler btn btn-sm" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -16,7 +27,11 @@
                          <li class="nav-item"><a class="nav-link" aria-current="page" href="breating.php">Breathing</a></li>
                          <li class="nav-item"><a class="nav-link" aria-current="page" href="note.php">Note</a></li>
                          <li class="nav-item"><a class="nav-link" aria-current="page" href="drawing.php">Drawing</a></li> 
-                         <li class="nav-item"><a class="nav-link" onclick="myFunction()" aria-current="page" href="#">Consultation</a></li>
+                         <!-- <li class="nav-item"><a class="nav-link" onclick="myFunction()" aria-current="page" href="consultation.php">Consultation</a></li> -->
+                         <li class="nav-item"><a class="nav-link" aria-current="page" <?php if(isset($getForm1) && ($getForm1 == 1) ){echo 'href="consultation.php"';}else {echo 'onclick="myFunction()"';} 
+                           // code...
+                          ?>>Consultation</a></li>
+
                          <li class="nav-item"><a class="nav-link" aria-current="page" href="index.php">Log out</a></li>
                     </ul>
                         

@@ -1,4 +1,5 @@
 <?php
+session_start();
     include('connect/connection.php');
 
     if(isset($_POST["login"])){
@@ -19,9 +20,13 @@
                     </script>
                     <?php
                 }else if(password_verify($password, $hashpassword)){
+                    $_SESSION["user_id"] = $fetch['user_id'];
+                     // echo $_SESSION["user_id"];
                     ?>
                     <script>
+                        
                         alert("login in successfully");
+                       
                         window.location.replace("index1.php");
                     </script>
                     <?php
