@@ -1,12 +1,16 @@
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 <?php 
 require_once('config.php');
 include('connect/connection.php');
 $ID = $_SESSION["user_id"];
- $qry = $connect->query("SELECT `Form1Status` FROM `login` where user_id= '$ID'");
+ $qry = $connect->query("SELECT * FROM `forms` where LoginID= '$ID'");
             while($row = $qry->fetch_assoc()){
               $getForm1 = (string)$row['Form1Status'];
-              // echo $row['Form1Status'];
-              // echo $getForm1;
+              $getForm2 = (string)$row['Form2Status'];
+              $getForm3 = (string)$row['Form3Status'];
+              $getForm4 = (string)$row['Form4Status'];
             }
  ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -28,9 +32,31 @@ $ID = $_SESSION["user_id"];
                          <li class="nav-item"><a class="nav-link" aria-current="page" href="note.php">Note</a></li>
                          <li class="nav-item"><a class="nav-link" aria-current="page" href="drawing.php">Drawing</a></li> 
                          <!-- <li class="nav-item"><a class="nav-link" onclick="myFunction()" aria-current="page" href="consultation.php">Consultation</a></li> -->
-                         <li class="nav-item"><a class="nav-link" aria-current="page" <?php if(isset($getForm1) && ($getForm1 == 1) ){echo 'href="consultation.php"';}else {echo 'onclick="myFunction()"';} 
-                           // code...
-                          ?>>Consultation</a></li>
+                         
+
+                    <li class="nav-item dropdown">
+                          <a href="#"  <?php if ($getForm1 == 0 && $getForm2 == 0 && $getForm3 ==0 && $getForm4 == 0) { echo 'onclick="myFunction()"';
+                            } else {
+                              echo 'data-bs-toggle="dropdown"';
+                            } ?> class="nav-link dropdown-toggle"  aria-expanded="false">
+                          <i class="nav-icon fas fa-address-card"></i>
+                          Consultation
+                          </a>
+                        <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="<?php echo base_url ?>consultation/Consultation"><?php if ($getForm1== 1) {
+                          echo "Consultation";
+                        } ?></a></li>
+                          <li><a class="dropdown-item" href="<?php echo base_url ?>consultation/Psychotheraphy"><?php if ($getForm2== 1) {
+                          echo "Psychotheraphy";
+                        } ?></a></li>
+                          <li><a class="dropdown-item" href="<?php echo base_url ?>consultation/NeuroPsychologicalTesting"><?php if ($getForm3== 1) {
+                          echo "Neuro-Psychological Testing";
+                        } ?></a></li>
+                          <li><a class="dropdown-item" href="<?php echo base_url ?>consultation/PscychologicalAssesment"><?php if ($getForm4== 1) {
+                          echo "Psychological Assessment";
+                        } ?></a></li>
+                        </ul>
+                    </li>
 
                          <li class="nav-item"><a class="nav-link" aria-current="page" href="index.php">Log out</a></li>
                     </ul>
@@ -69,3 +95,26 @@ function myFunction() {
   alert("No form Available");
 }
 </script>
+ <script>
+    $(document).ready(function(){
+      var page = '<?php echo isset($_GET['page']) ? $_GET['page'] : 'home' ?>';
+      var s = '<?php echo isset($_GET['s']) ? $_GET['s'] : '' ?>';
+      page = page.replace(/\//g,'_');
+
+      if($('.nav-link.nav-'+page).length > 0){
+             $('.nav-link.nav-'+page).addClass('active')
+        if($('.nav-link.nav-'+page).hasClass('tree-item') == true){
+            $('.nav-link.nav-'+page).closest('.nav-treeview').siblings('a').addClass('active')
+          $('.nav-link.nav-'+page).closest('.nav-treeview').parent().addClass('menu-open')
+        }
+        if($('.nav-link.nav-'+page).hasClass('nav-is-tree') == true){
+          $('.nav-link.nav-'+page).parent().addClass('menu-open')
+        }
+
+      }
+     
+    })
+  </script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ 

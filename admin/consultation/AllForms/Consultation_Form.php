@@ -1,30 +1,6 @@
-<?php 
-require_once('config.php');
-include('connect/connection.php');
-$ID = $_SESSION["user_id"];
- // $qry = $connect->query("SELECT `Form1Status` FROM `login` where user_id= '$ID'");
- //            while($row = $qry->fetch_assoc()){
- //              $getForm1 = (string)$row['Form1Status'];
- //              // echo $row['Form1Status'];
- //              // echo $getForm1;
- //            }
- ?>
  <?php require_once('inc/topBarNav.php') ?>
-<!--  <hr>
- <center>
-   <label for="forms">Select Type of Forms:</label>
-<select name="forms" id="forms">
-  <option value="consultation">Consultation Form</option>
-  <option value="neuropsychological">NeuroPsychological Testing</option>
-  <option value="psychological">Psychological Assessment</option>
-  <option value="psychotheraphy">Psychotheraphy</option>
-</select>
- </center>
- <hr> -->
-
- 
-
- <br>         
+     <?php require_once('inc/navigation.php') ?>
+           
 <center>
 <div class="card" style="width: 60%"><br> 
  <center><h1 >Cosultation Form</h1></center>

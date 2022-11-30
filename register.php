@@ -3,6 +3,8 @@
     include('connect/connection.php');
 
     if(isset($_POST["register"])){
+        $fname = $_POST['fname'];
+        $lname = $_POST['lname'];
         $email = $_POST["email"];
         $password = $_POST["password"];
 
@@ -18,8 +20,8 @@
                 <?php
             }else{
                 $password_hash = password_hash($password, PASSWORD_BCRYPT);
-
-                $result = mysqli_query($connect, "INSERT INTO login (email, password, status) VALUES ('$email', '$password_hash', 0)");
+                $form = mysqli_query($connect, "INSERT INTO forms (Form1Status,Form2Status, Form3Status, Form4Status) VALUES (0,0,0,0)");
+                $result = mysqli_query($connect, "INSERT INTO login (fname, lname, email, password, status) VALUES ('$fname','$lname','$email', '$password_hash', 0)");
     
                 if($result){
                     $otp = rand(100000,999999);

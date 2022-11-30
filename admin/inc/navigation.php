@@ -86,16 +86,18 @@
     Consultation
   </a>
   <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="<?php echo base_url ?>admin/?page=consultation/Form1">Consultation Form </a></li>
-    <li><a class="dropdown-item" href="<?php echo base_url ?>admin/?page=consultation/Form2">Form 2</a></li>
-    <li><a class="dropdown-item" href="#">Form 3</a></li>
+    <li><a class="dropdown-item" href="<?php echo base_url ?>admin/?page=consultation/Consultation">Consultation</a></li>
+    <li><a class="dropdown-item" href="<?php echo base_url ?>admin/?page=consultation/Psychotheraphy">Psychotheraphy</a></li>
+    <li><a class="dropdown-item" href="<?php echo base_url ?>admin/?page=consultation/NeuroPsychologicalTesting">Neuro-Psychological Testing</a></li>
+    <li><a class="dropdown-item" href="<?php echo base_url ?>admin/?page=consultation/PscychologicalAssesment">Psychological Assessment</a></li>
+    <!-- <li><a class="dropdown-item" href="#">Form 3</a></li> -->
     <!-- <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="#">Separated link</a></li> -->
   </ul>
 
                           
                       
-                      </a>
+                      <!-- </a> -->
                     </li>
 
                     </li>

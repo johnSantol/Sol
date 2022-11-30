@@ -1,30 +1,14 @@
-<?php 
-require_once('config.php');
-include('connect/connection.php');
-$ID = $_SESSION["user_id"];
- // $qry = $connect->query("SELECT `Form1Status` FROM `login` where user_id= '$ID'");
- //            while($row = $qry->fetch_assoc()){
- //              $getForm1 = (string)$row['Form1Status'];
- //              // echo $row['Form1Status'];
- //              // echo $getForm1;
- //            }
- ?>
  <?php require_once('inc/topBarNav.php') ?>
-<!--  <hr>
- <center>
-   <label for="forms">Select Type of Forms:</label>
-<select name="forms" id="forms">
-  <option value="consultation">Consultation Form</option>
-  <option value="neuropsychological">NeuroPsychological Testing</option>
-  <option value="psychological">Psychological Assessment</option>
-  <option value="psychotheraphy">Psychotheraphy</option>
-</select>
- </center>
- <hr> -->
+     <?php require_once('inc/navigation.php') ?>
 
- 
-
- <br>         
+<?php
+if(isset($_POST['submit'])){//to run PHP script on submit
+if(!empty($_POST['check_list'])){
+// Loop to store and display values of individual checked checkbox.
+foreach($_POST['check_list'] as $selected){
+$qry = $conn->query("UPDATE `forms` SET `Form1Status`='1' WHERE LoginID = $selected;");
+}}}
+?>         
 <center>
 <div class="card" style="width: 60%"><br> 
  <center><h1 >Cosultation Form</h1></center>
@@ -47,7 +31,7 @@ I,<input type="text" class=" in col-md-6" placeholder="Name" id="cname" name="cn
 <p><b>I have read, understood and agreed to the following statement as conditions under which I have given this consent.I also understand that with written notice, I can revoke this consent at any time.</b></p>
 <input type="checkbox" value="I agree to the terms and conditions" style="color:  grey; text-align:left ;" name=""> I have read and accept the agreement
 <br><br>  
-<input type="submit" class="btn btn-primary" value="Submit" name="">
+<input type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary" value="Upload" name="">
 
 </div>
 
@@ -67,4 +51,63 @@ I,<input type="text" class=" in col-md-6" placeholder="Name" id="cname" name="cn
     margin-right: 5px;
   }
 </style> 
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div  class="modal-dialog modal-md modal-dialog-centered modal-dialog-scrollable">
+    <div style="background-color: white;" class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: black;">Upload Form</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post">
+        <table id="datatable" class="table table-striped" style="width:100%">
+         <thead>
+            <tr>
+                <th></th>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th> 
+            </tr>
+        </thead>
+     
+        <tbody>
+          <?php 
+          $i = 1;
+          $qry = $conn->query("SELECT `user_id`,`fname`,`lname`,`email` FROM `login`");
+            while($row = $qry->fetch_assoc()):
+          ?>
+            <tr>
+              <td class="text-center"><input type="checkbox" name="check_list[]" value="<?php echo($row['user_id']) ?>"></td>
+              <td><?php echo ucwords($row['user_id']) ?></td>
+              <td><?php echo ucwords($row['fname']) ?></td>
+              <td><?php echo ucwords($row['lname']) ?></td>
+            </tr>
+          <?php endwhile; ?>
+        </tbody>
+       
+    </table>
+   
+  
+  
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <input type="submit" name="submit" class="btn btn-primary" value="Submit"/>
+        <!-- <button type="button" name="SubmitButton" data-bs-dismiss="modal" class="btn btn-primary">Done</button> -->
+      </form>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $('#datatable').DataTable();
+});
+</script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+
